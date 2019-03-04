@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -36,6 +37,9 @@ public class FXMLDocumentController implements Initializable {
     private boolean result;
     private int i;
     private int j;
+
+    @FXML
+    private Button wynik;
     //String[] winComb;  
      public FXMLDocumentController(){
         this.boxY = new StateOfBox("");
@@ -46,13 +50,13 @@ public class FXMLDocumentController implements Initializable {
         j = 0;
         arrayX =  new String[5];
         arrayY =  new String[5];
-      //  winComb = new String [8];
+      //  winComb = new String
      }
      
     @FXML
     public void operateButton(ActionEvent evt){
         //button1.setText("X");
-      
+
         
         
         
@@ -94,8 +98,11 @@ public class FXMLDocumentController implements Initializable {
        // this.containX = new Contain(arrayX,winComb);
 
         //Sprawdzam czy X wygrał
-    if(Contain.useList(arrayX,winComb0)){
+    if(Contain.useList(arrayX,winComb0)||Contain.useList(arrayX,winComb1)||Contain.useList(arrayX,winComb2)||Contain.useList(arrayX,winComb3)||Contain.useList(arrayX,winComb4)||Contain.useList(arrayX,winComb5)||Contain.useList(arrayX,winComb6)||Contain.useList(arrayX,winComb7)){
         System.out.println("XDDDDDDDD");
+
+        // testuje zamykanie biezaego okna
+
 
         Parent root = null;
         try {
@@ -108,59 +115,28 @@ public class FXMLDocumentController implements Initializable {
         Stage xd = new Stage();
         xd.setScene(scene);
         xd.show();
+        wynik.setText("X WON");
     }
-    else if(Contain.useList(arrayX,winComb1)){
-        System.out.println("XDDDDDDDD");
 
-
-    }
-    else if(Contain.useList(arrayX,winComb2)){
-        System.out.println("XDDDDDDDD");
-    }
-    else if(Contain.useList(arrayX,winComb3)){
-        System.out.println("XDDDDDDDD");
-    }
-    else if(Contain.useList(arrayX,winComb4)){
-        System.out.println("XDDDDDDDD");
-    }
-    else if(Contain.useList(arrayX,winComb5)){
-        System.out.println("XDDDDDDDD");
-    }
-    else if(Contain.useList(arrayX,winComb6)){
-        System.out.println("XDDDDDDDD");
-    }
-    else if(Contain.useList(arrayX,winComb7)){
-        System.out.println("XDDDDDDDD");
-    }
 
 
     //Sprawdzam czy Y wygrał
-        else if(Contain.useList(arrayY,winComb0)){
-            System.out.println("XDDDDDDDD");
-        }
-        else if(Contain.useList(arrayY,winComb1)){
-            System.out.println("XDDDDDDDD");
-        }
-        else if(Contain.useList(arrayY,winComb2)){
-            System.out.println("XDDDDDDDD");
-        }
-        else if(Contain.useList(arrayY,winComb3)){
-            System.out.println("XDDDDDDDD");
-        }
-        else if(Contain.useList(arrayY,winComb4)){
-            System.out.println("XDDDDDDDD");
-        }
-        else if(Contain.useList(arrayY,winComb5)){
-            System.out.println("XDDDDDDDD");
-        }
-        else if(Contain.useList(arrayY,winComb6)){
-            System.out.println("XDDDDDDDD");
-        }
-        else if(Contain.useList(arrayY,winComb7)){
-            System.out.println("XDDDDDDDD");
-        }
 
+       else if(Contain.useList(arrayY,winComb0)||Contain.useList(arrayY,winComb1)||Contain.useList(arrayY,winComb2)||Contain.useList(arrayY,winComb3)||Contain.useList(arrayY,winComb4)||Contain.useList(arrayY,winComb5)||Contain.useList(arrayY,winComb6)||Contain.useList(arrayY,winComb7)){
+            System.out.println("XDDDDDDDD");
 
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("Wynik.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Scene scene = new Scene(root);
+            Stage xd = new Stage();
+            xd.setScene(scene);
+            xd.show();
+        }
 
 
     }
