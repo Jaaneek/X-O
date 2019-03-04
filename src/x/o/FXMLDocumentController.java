@@ -19,7 +19,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import javax.xml.transform.Source;
 
 /**
  *
@@ -39,7 +42,10 @@ public class FXMLDocumentController implements Initializable {
     private int j;
 
     @FXML
-    private Button wynik;
+    private Button resultX;
+
+
+
     //String[] winComb;  
      public FXMLDocumentController(){
         this.boxY = new StateOfBox("");
@@ -77,7 +83,7 @@ public class FXMLDocumentController implements Initializable {
          boxY = new StateOfBox(button.getId());
          i++;
          arrayY[i] = boxY.getState();
-         
+
         }
 
         //Disable button
@@ -104,9 +110,11 @@ public class FXMLDocumentController implements Initializable {
         // testuje zamykanie biezaego okna
 
 
-        Parent root = null;
+        AnchorPane root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("Wynik.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Wynik.fxml"));
+            loader.setController(this); // use this intance as the controller
+            root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,7 +123,10 @@ public class FXMLDocumentController implements Initializable {
         Stage xd = new Stage();
         xd.setScene(scene);
         xd.show();
-        wynik.setText("X WON");
+
+        xd.setTitle("X WON");
+
+        resultX.setText("X WON");
     }
 
 
@@ -125,9 +136,11 @@ public class FXMLDocumentController implements Initializable {
        else if(Contain.useList(arrayY,winComb0)||Contain.useList(arrayY,winComb1)||Contain.useList(arrayY,winComb2)||Contain.useList(arrayY,winComb3)||Contain.useList(arrayY,winComb4)||Contain.useList(arrayY,winComb5)||Contain.useList(arrayY,winComb6)||Contain.useList(arrayY,winComb7)){
             System.out.println("XDDDDDDDD");
 
-            Parent root = null;
+            AnchorPane root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("Wynik.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Wynik.fxml"));
+                loader.setController(this); // use this intance as the controller
+                root = loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -136,6 +149,11 @@ public class FXMLDocumentController implements Initializable {
             Stage xd = new Stage();
             xd.setScene(scene);
             xd.show();
+        xd.setTitle("Y WON");
+
+
+
+        resultX.setText("Y WON");
         }
 
 
