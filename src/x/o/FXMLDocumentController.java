@@ -40,7 +40,7 @@ public class FXMLDocumentController implements Initializable {
     private boolean result;
     private int i;
     private int j;
-
+    int countOfMoves;
     @FXML
     private Button resultX;
 
@@ -55,7 +55,7 @@ public class FXMLDocumentController implements Initializable {
         i = 0;
         j = 0;
         arrayX =  new String[5];
-        arrayY =  new String[5];
+        arrayY =  new String[6];
       //  winComb = new String
      }
      
@@ -65,7 +65,7 @@ public class FXMLDocumentController implements Initializable {
 
         
         
-        
+        countOfMoves++;
         Button button = (Button)evt.getSource();
         System.out.println(button.getId()); 
         
@@ -149,13 +149,31 @@ public class FXMLDocumentController implements Initializable {
             Stage xd = new Stage();
             xd.setScene(scene);
             xd.show();
-        xd.setTitle("Y WON");
+        xd.setTitle("O WON");
 
 
 
-        resultX.setText("Y WON");
+        resultX.setText("O WON");
         }
+       else if(countOfMoves ==9) {
+           AnchorPane root = null;
+           try {
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("Wynik.fxml"));
+               loader.setController(this); // use this intance as the controller
+               root = loader.load();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
 
+           Scene scene = new Scene(root);
+           Stage xd = new Stage();
+           xd.setScene(scene);
+           xd.show();
+           xd.setTitle("REMIS");
+           resultX.setText("REMIS");
+       }
+
+        System.out.println(countOfMoves);
 
     }
     @Override
